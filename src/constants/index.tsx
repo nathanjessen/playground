@@ -1,0 +1,1 @@
+export const WORD_API: string = "https://random-word-api.herokuapp.com/word";
