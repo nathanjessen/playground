@@ -1,3 +1,4 @@
+import { themes } from '../src/constants/themes';
 import "../src/styles/tailwind.output.css";
 
 export const parameters = {
@@ -7,5 +8,11 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+  },
+};
+
+export const globalTypes = {
+  themes: {
+    defaultValue: themes,
   },
 };
