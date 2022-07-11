@@ -92,7 +92,7 @@ export const WordlePage = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto space-y-4 h-screen flex flex-col justify-center">
+    <div className="max-w-lg mx-auto space-y-4 min-h-screen flex flex-col justify-center">
       <WordInput onGuess={onGuess} disabled={isGameComplete} />
       <LetterGrid lines={lines} cols={wordLen} rows={attempts} />
 
