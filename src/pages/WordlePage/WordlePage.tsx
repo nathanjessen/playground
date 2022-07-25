@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react';
-import { WORD_API } from '../../constants';
+import { WORDS_API } from '../../constants';
 import LetterGrid from '../../components/Wordle/LetterGrid';
-import { TColor, TLine } from '../../typings';
+import { TColor, TLine } from '../../typings/Wordle';
 import WordInput from '../../components/Wordle/WordInput';
+import API from '../../lib/API';
+
+const api = new API();
 
 export const WordlePage = () => {
+  // List of all possible words
+  const [words, setWords] = useState<string[]>([]);
   // Word to be guessed
   const [solution, setSolution] = useState<string>('');
   // Length of word being guessed
-  const [wordLen, setWordLen] = useState<number>(5);
+  // const [wordLen, setWordLen] = useState<number>(5);
+  const wordLen: number = 5;
   // How many attempts are they allowed
-  const [attempts, setAttempts] = useState<number>(6);
+  // const [attempts, setAttempts] = useState<number>(6);
+  const attempts: number = 6;
   // Current attempt
   const [guess, setGuess] = useState<string>('');
   // All attempts
@@ -18,20 +25,28 @@ export const WordlePage = () => {
   // Whether or not game is complete
   const [isGameComplete, setIsGameComplete] = useState<boolean>(false);
 
+  const getRandomWord = () => {
+    const randomInt = Math.floor(Math.random() * words.length);
+    const newWord = words[randomInt];
+    if (newWord) {
+      setSolution(newWord);
+    }
+  };
+
   useEffect(() => {
     const controller = new AbortController();
 
-    const getWord = async () => {
-      const response = await fetch(`${WORD_API}?length=${wordLen}`, {
+    const getWords = async () => {
+      const response = await api.get(`${WORDS_API}?length=${wordLen}`, {
         signal: controller.signal,
-      });
-      const words: Array<string> = await response.json();
-      setSolution(words[0]);
-      setWordLen(words[0].length);
-      setAttempts(6);
+      }).then(res => res.json());
+      const randomInt = Math.floor(Math.random() * response.length);
+
+      setWords(response);
+      setSolution(response[randomInt]);
     };
 
-    getWord();
+    getWords();
 
     return () => controller?.abort();
   }, []);
@@ -41,12 +56,14 @@ export const WordlePage = () => {
     if (newLine.length) {
       setLines(prevLines => [...prevLines, newLine]);
     }
+    // eslint-disable-next-line
   }, [guess]);
 
   useEffect(() => {
     if (solution.length > 0 && (lines.length === attempts || guess === solution)) {
       setIsGameComplete(true);
     }
+    // eslint-disable-next-line
   }, [lines]);
 
   const getLetters = (): TLine => {
@@ -77,8 +94,17 @@ export const WordlePage = () => {
   };
 
   const onGuess = (val: string) => {
-    if (val.length === wordLen) {
-      setGuess(val);
+    // Verify word exists in dictionary
+    if (words.indexOf(val) >= 0) {
+      // Word isn't the desired length
+      // Although, words in dictionary already limited to correct length
+      if (val.length === wordLen) {
+        setGuess(val);
+      }
+    }
+    // User entered an unknown word
+    else {
+      alert('not a word');
     }
   };
 
@@ -88,11 +114,15 @@ export const WordlePage = () => {
   };
 
   const onRestart = () => {
-    window.location.reload();
+    // window.location.reload();
+    setGuess('');
+    setLines([]);
+    setIsGameComplete(false);
+    getRandomWord();
   };
 
   return (
-    <div className="max-w-lg mx-auto space-y-4 h-screen flex flex-col justify-center">
+    <div className="max-w-lg mx-auto px-8 space-y-4 flex flex-col justify-center">
       <WordInput onGuess={onGuess} disabled={isGameComplete} />
       <LetterGrid lines={lines} cols={wordLen} rows={attempts} />
 

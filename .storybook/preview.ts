@@ -1,4 +1,5 @@
-import "../src/styles/tailwind.output.css";
+import { themes } from '../src/constants/themes';
+import "../src/styles/tailwind.css";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -7,5 +8,11 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+  },
+};
+
+export const globalTypes = {
+  themes: {
+    defaultValue: themes,
   },
 };

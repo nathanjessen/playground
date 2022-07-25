@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { TColor } from "../../../typings";
+import { TColor } from "../../../typings/Wordle";
 
 export interface IColorTile {
   color?: TColor;
