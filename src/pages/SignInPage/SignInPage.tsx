@@ -1,7 +1,7 @@
 import UnsplashPhoto from "../../assets/images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg";
 import Divider from "../../base/Divider";
-import SignInForm from "../../components/Forms/SignInForm";
-import SocialSignIn from "../../components/Forms/SocialSignIn";
+import SignInForm from "../../components/SignInForm";
+import SocialSignIn from "../../components/SocialSignIn";
 
 export interface SignInPageProps {
   title?: string;

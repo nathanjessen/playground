@@ -1,4 +1,5 @@
 import { HTMLInputTypeAttribute, InputHTMLAttributes } from "react";
+import clsx from 'clsx';
 
 export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -15,29 +16,34 @@ export const InputField = ({
   ...rest
 }: InputFieldProps) => {
   return (
-    <div className="space-y-2">
-      <label htmlFor={name} className="block cursor-pointer">
-        {label && (
-          <span className="block text-sm tracking-widest uppercase mb-2">
+    <div className="form-control w-full">
+      {label && (
+        <label htmlFor={name} className="label cursor-pointer">
+          <span className="label-text uppercase">
             {label}
-            {rest?.required && <span className="text-xs">*</span>}
           </span>
+
+          {!rest?.required && (
+            <span className="label-text-alt text-xs">
+              (Optional)
+            </span>
+          )}
+        </label>
+      )}
+
+      <input
+        id={name}
+        name={name}
+        type={type}
+        className={clsx(
+          'input input-bordered border-2 w-full',
+          error ? 'input-error bg-red-200 text-error-content' : 'input-primary',
         )}
-        <input
-          id={name}
-          name={name}
-          type={type}
-          className={[
-            'w-full border-4 transition py-3 px-4',
-            error ? 'border-red-400 focus:border-red-300 focus:ring-red-300 bg-red-100' : 'border-teal-200 focus:border-teal-400 focus:ring-teal-400',
-            rest?.disabled ? '!border-gray-400 !bg-gray-100' : '',
-          ].join(' ')}
-          {...rest}
-        />
-      </label>
+        {...rest}
+      />
 
       {error && (
-        <p className="text-red-600 px-2 text-sm">{error}</p>
+        <p className="text-error px-2 text-sm mt-1">{error}</p>
       )}
     </div>
   );

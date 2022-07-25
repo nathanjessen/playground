@@ -1,12 +1,13 @@
 import { Story, Meta } from '@storybook/react';
-import { StatusMessage, StatusMessageProps } from './StatusMessage';
+import { ServerResponse } from '../../typings';
+import { StatusMessage } from './StatusMessage';
 
 export default {
-  title: "Forms/StatusMessage",
+  title: "Components/StatusMessage",
   component: StatusMessage,
 } as Meta;
 
-const Template: Story<StatusMessageProps> = (args) => <StatusMessage {...args} />;
+const Template: Story<ServerResponse> = (args) => <StatusMessage {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

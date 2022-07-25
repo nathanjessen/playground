@@ -1,5 +1,5 @@
 import isEmail from 'validator/lib/isEmail';
-import { EmailSignupFormData, EmailSignupFormValidatorResponse } from '../../typings/EmailSignupForm';
+import { EmailSignupFormData, EmailSignupFormValidatorResponse } from './types';
 
 export const validateEmailSignupForm = (payload: EmailSignupFormData): EmailSignupFormValidatorResponse => {
   const errors: { [key: string]: string; } = {};
@@ -26,9 +26,9 @@ export const validateEmailSignupForm = (payload: EmailSignupFormData): EmailSign
     errors.email = "Email cannot be empty.";
   }
 
-  if (!payload || payload.euResident.trim().length === 0) {
+  if (!payload || payload.available.trim().length === 0) {
     isValidForm = false;
-    errors.euResident = "EU Resident cannot be empty.";
+    errors.available = "Available cannot be empty.";
   }
 
   if (!payload || (

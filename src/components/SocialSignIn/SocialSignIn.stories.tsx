@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { SocialSignIn } from './SocialSignIn';
 
 export default {
-  title: "Forms/SocialSignIn",
+  title: "Components/SocialSignIn",
   component: SocialSignIn,
 } as Meta;
 

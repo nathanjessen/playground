@@ -1,4 +1,4 @@
-import { TLine } from "../../../typings";
+import { TLine } from "../../../typings/Wordle";
 import WordLine from "../WordLine";
 
 export interface ILetterGrid {

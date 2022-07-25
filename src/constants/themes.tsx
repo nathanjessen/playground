@@ -1,7 +1,8 @@
-export const defaultTheme: string = 'dark';
+export const defaultTheme: string = 'corporate';
 
 export const daisyThemes: Array<string> = [
   'light',
+  'garden',
   'dark',
   'cupcake',
   'bumblebee',
@@ -12,7 +13,6 @@ export const daisyThemes: Array<string> = [
   'cyberpunk',
   'valentine',
   'halloween',
-  'garden',
   'forest',
   'aqua',
   'lofi',

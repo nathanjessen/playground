@@ -31,6 +31,12 @@ Required.args = {
   required: true,
 };
 
+export const Optional = Template.bind({});
+Optional.args = {
+  label: 'Username',
+  required: false,
+};
+
 export const TypeEmail = Template.bind({});
 TypeEmail.args = {
   type: 'email',

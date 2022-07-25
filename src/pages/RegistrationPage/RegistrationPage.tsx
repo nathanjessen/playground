@@ -1,5 +1,5 @@
 import UnsplashPhoto from "../../assets/images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg";
-import RegistrationContainer from "../../components/Forms/RegistrationForm";
+import RegistrationContainer from "../../components/RegistrationForm";
 
 export interface RegistrationPageProps {
   title?: string;

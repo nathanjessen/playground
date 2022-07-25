@@ -1,13 +1,12 @@
 import { ChangeEvent, FormEvent } from "react";
-import { EmailSignupFormData } from "../../../typings/EmailSignupForm";
-import Button from "../../../base/Button";
-import { Checkbox } from "../../../base/Checkbox/Checkbox";
-import DropList from "../../../base/DropList";
-import InputField from "../../../base/InputField";
+import { EmailSignupFormData } from "./types";
+import Button from "../../base/Button";
+import { Checkbox } from "../../base/Checkbox/Checkbox";
+import DropList from "../../base/DropList";
+import InputField from "../../base/InputField";
 
 export interface EmailSignupFormProps {
   onFormSubmit?: (e: FormEvent<HTMLFormElement>) => void;
-  onFormReset?: () => void;
   onInputChange?: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onCheckboxChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   fields?: EmailSignupFormData;
@@ -15,23 +14,22 @@ export interface EmailSignupFormProps {
   loading?: boolean;
 }
 
-export const EmailSignupForm = ({ onFormSubmit, onFormReset, onInputChange, onCheckboxChange, fields, errors, loading = false }: EmailSignupFormProps) => {
+export const EmailSignupForm = ({ onFormSubmit, onInputChange, onCheckboxChange, fields, errors, loading = false }: EmailSignupFormProps) => {
   return (
     <form onSubmit={e => onFormSubmit?.(e)}>
-      <h1 className="font-semibold text-xl mb-2">
+      <h1 className="font-semibold text-xl mb-4">
         Sign up for email updates
       </h1>
-      <p className="text-gray-500 mb-8">* Indicates a required field</p>
 
       {errors && (
         <div className="mb-4 space-y-1">
           {errors?.form && (
-            <p className="text-red-600 font-semibold italic text-sm">{errors.form}</p>
+            <p className="text-error font-semibold italic text-sm">{errors.form}</p>
           )}
         </div>
       )}
 
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+      <div className="grid gap-3 grid-cols-1">
         <InputField
           name="firstName"
           label="First Name"
@@ -70,19 +68,17 @@ export const EmailSignupForm = ({ onFormSubmit, onFormReset, onInputChange, onCh
           error={errors?.orgname}
         />
         <DropList
-          name="euResident"
-          label="EU Resident"
+          name="available"
+          label="Available"
           onChange={onInputChange}
-          value={fields?.euResident}
+          value={fields?.available}
           required={true}
-          items={['No', 'Yes']}
+          items={['Yes', 'No']}
           disabled={loading}
-          error={errors?.euResident}
+          error={errors?.available}
         />
-      </div>
 
-      <div className="max-w-4xl mt-8">
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+        <div className="">
           <Checkbox
             name="advances"
             label="Advances"
@@ -90,6 +86,7 @@ export const EmailSignupForm = ({ onFormSubmit, onFormReset, onInputChange, onCh
             checked={fields?.advances === 'yes'}
             disabled={loading}
             onChange={onCheckboxChange}
+            color="primary"
           />
           <Checkbox
             name="alerts"
@@ -98,6 +95,7 @@ export const EmailSignupForm = ({ onFormSubmit, onFormReset, onInputChange, onCh
             checked={fields?.alerts === 'yes'}
             disabled={loading}
             onChange={onCheckboxChange}
+            color="primary"
           />
           <Checkbox
             name="other"
@@ -106,22 +104,16 @@ export const EmailSignupForm = ({ onFormSubmit, onFormReset, onInputChange, onCh
             checked={fields?.other === 'yes'}
             disabled={loading}
             onChange={onCheckboxChange}
+            color="primary"
           />
-        </div>
 
-        {errors?.other && (
-          <p className="text-red-600 px-2 text-sm mt-2">{errors.other}</p>
-        )}
+          {errors?.other && (
+            <p className="text-error px-2 text-sm mt-2">{errors.other}</p>
+          )}
+        </div>
       </div>
 
-      <div className="flex items-center gap-4 justify-end mt-8">
-        <Button
-          type="reset"
-          color="secondary"
-          disabled={loading}
-          onClick={onFormReset}>
-          Reset
-        </Button>
+      <div className="flex items-center gap-4 justify-end mt-4">
         <Button
           type="submit"
           color="primary"

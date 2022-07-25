@@ -1,4 +1,5 @@
 import { SelectHTMLAttributes } from "react";
+import clsx from 'clsx';
 
 export interface DropListProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
@@ -15,30 +16,34 @@ export const DropList = ({
   ...rest
 }: DropListProps) => {
   return (
-    <div className="space-y-2">
-      <label htmlFor={name} className="block cursor-pointer">
-        {label && (
-          <span className="block text-sm tracking-widest uppercase mb-2">
+    <div className="form-control w-full">
+      {label && (
+        <label htmlFor={name} className="label cursor-pointer">
+          <span className="label-text uppercase">
             {label}
-            {rest?.required && <span className="text-xs">*</span>}
           </span>
+
+          {!rest?.required && (
+            <span className="label-text-alt text-xs">
+              (Optional)
+            </span>
+          )}
+        </label>
+      )}
+
+      <select
+        id={name}
+        name={name}
+        className={clsx(
+          'select select-bordered border-2 w-full transition',
+          error ? 'select-error bg-red-200 text-error-content' : 'select-primary',
         )}
-        <select
-          id={name}
-          name={name}
-          className={[
-            'w-full border-4 transition py-3 px-4',
-            error ? 'border-red-400 focus:border-red-300 focus:ring-red-300 bg-red-100' : 'border-teal-200 focus:border-teal-400 focus:ring-teal-400',
-            rest?.disabled ? '!border-gray-400 !bg-gray-100' : '',
-          ].join(' ')}
-          {...rest}
-        >
-          <option value=''> -- select an option -- </option>
-          {items?.map((item, idx) => (
-            <option key={idx}>{item}</option>
-          ))}
-        </select>
-      </label>
+        {...rest}>
+        <option value=''> -- select an option -- </option>
+        {items?.map((item, idx) => (
+          <option key={idx}>{item}</option>
+        ))}
+      </select>
 
       {error && (
         <p className="text-red-600 px-2 text-sm">{error}</p>

@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { SignInForm, SignInFormProps } from './SignInForm';
 
 export default {
-  title: "Forms/SignInForm",
+  title: "Components/SignInForm",
   component: SignInForm,
 } as Meta;
 

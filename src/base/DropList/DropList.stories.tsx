@@ -13,17 +13,17 @@ Default.args = {};
 
 export const Label = Template.bind({});
 Label.args = {
-  label: 'EU Resident',
+  label: 'Available',
 };
 
 export const Required = Template.bind({});
 Required.args = {
-  label: 'EU Resident',
+  label: 'Available',
   required: true,
 };
 
 export const Items = Template.bind({});
 Items.args = {
-  label: 'EU Resident',
+  label: 'Available',
   items: ['No', 'Yes'],
 };
