@@ -23,8 +23,6 @@
   },
   "scripts": {
     "build:tailwind": "npx tailwindcss build -i src/styles/tailwind.css -o src/styles/tailwind.output.css",
-    "prebuild": "npm run build:tailwind",
-    "prebuild-storybook": "npm run build:tailwind",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

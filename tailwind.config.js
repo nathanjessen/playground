@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        paper: "url('/src/assets/images/paper_fibers.webp')",
+      },
     },
   },
   plugins: [
