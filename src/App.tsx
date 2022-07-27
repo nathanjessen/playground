@@ -1,10 +1,9 @@
 import './styles/tailwind.css';
+import { ThemeProvider } from './state/ThemeContext';
 import EmailSignup from './pages/EmailSignup';
 // import RegistrationPage from './pages/RegistrationPage';
 // import SignInPage from './pages/SignInPage';
-// import WordlePage from './pages/WordlePage';
 import ThemeDropdown from "./components/ThemeDropdown";
-import { ThemeProvider } from './state/ThemeContext';
 
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
         <EmailSignup />
         {/* <SignInPage title="Sign up for an account" /> */}
         {/* <RegistrationPage title="Sign up for an account" /> */}
-        {/* <WordlePage /> */}
       </div>
     </ThemeProvider>
   );
