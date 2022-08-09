@@ -1,9 +1,9 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import { SocialSignIn } from './SocialSignIn';
 
 export default {
-  title: "Components/SocialSignIn",
+  title: 'Components/SocialSignIn',
   component: SocialSignIn,
 } as Meta;
 
@@ -14,5 +14,5 @@ Default.args = {};
 
 export const Title = Template.bind({});
 Title.args = {
-  title: "Sign in with",
+  title: 'Sign in with',
 };

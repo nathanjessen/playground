@@ -1,11 +1,11 @@
-import { ChangeEvent, FormEvent, useState, useCallback } from 'react';
-import { SIGNUP_API } from "../../constants";
-import { FormErrors, ServerResponse } from '../../typings';
-import { EmailSignupFormData, EmailSignupFormValidatorResponse } from './types';
-import { validateEmailSignupForm } from "./validate";
-import { EmailSignupForm } from "./EmailSignupForm";
-import StatusMessage from "../StatusMessage";
+import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import { SIGNUP_API } from '../../constants';
 import useFormPost from '../../hooks/useFormPost';
+import { FormErrors, ServerResponse } from '../../typings';
+import StatusMessage from '../StatusMessage';
+import { EmailSignupForm } from './EmailSignupForm';
+import { EmailSignupFormData, EmailSignupFormValidatorResponse } from './types';
+import { validateEmailSignupForm } from './validate';
 
 const initialState: EmailSignupFormData = {
   firstName: '',
@@ -30,29 +30,33 @@ const EmailSignupFormContainer = () => {
     setLoading(false);
   };
 
-  const onInputChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFields(currentFields => ({
-      ...currentFields,
-      [e.target.name]: e.target.value
-    }));
-  }, []);
+  const onInputChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      setFields((currentFields) => ({
+        ...currentFields,
+        [e.target.name]: e.target.value,
+      }));
+    },
+    []
+  );
 
   const onCheckboxChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setFields(currentFields => ({
+    setFields((currentFields) => ({
       ...currentFields,
-      [e.target.name]: e.target.checked ? e.target.value : ''
+      [e.target.name]: e.target.checked ? e.target.value : '',
     }));
   }, []);
 
   const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const validation: EmailSignupFormValidatorResponse = validateEmailSignupForm(fields);
+    const validation: EmailSignupFormValidatorResponse =
+      validateEmailSignupForm(fields);
 
     if (validation.success) {
       setLoading(true);
       setErrors(validation.errors);
       const formBody = new FormData();
-      Object.entries(fields).forEach(field => {
+      Object.entries(fields).forEach((field) => {
         const [key, val] = field;
         formBody.set(key, val);
       });
@@ -68,7 +72,7 @@ const EmailSignupFormContainer = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className='max-w-lg mx-auto'>
       {done && data ? (
         <StatusMessage status={data.status} message={data.message} />
       ) : (

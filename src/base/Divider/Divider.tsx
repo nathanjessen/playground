@@ -1,14 +1,19 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
 export interface IDividerProps {
-  variant?: "vertical" | "horizontal";
+  variant?: 'vertical' | 'horizontal';
 }
 
-export const Divider = ({ variant = "vertical", children }: PropsWithChildren<IDividerProps>) => {
-  const variants: { [key: string]: string; } = {
+export const Divider = ({
+  variant = 'vertical',
+  children,
+}: PropsWithChildren<IDividerProps>) => {
+  const variants: { [key: string]: string } = {
     vertical: 'divider-vertical',
     horizontal: 'divider-horizontal',
   };
 
-  return <div className={`divider text-sm ${variants[variant]}`}>{children}</div>;
+  return (
+    <div className={`divider text-sm ${variants[variant]}`}>{children}</div>
+  );
 };

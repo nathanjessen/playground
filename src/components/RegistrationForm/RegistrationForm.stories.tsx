@@ -1,13 +1,15 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
-import { RegistrationForm, IRegistrationFormProps } from './RegistrationForm';
+import { IRegistrationFormProps, RegistrationForm } from './RegistrationForm';
 
 export default {
-  title: "Components/RegistrationForm",
+  title: 'Components/RegistrationForm',
   component: RegistrationForm,
 } as Meta;
 
-const Template: Story<IRegistrationFormProps> = (args) => <RegistrationForm {...args} />;
+const Template: Story<IRegistrationFormProps> = (args) => (
+  <RegistrationForm {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {};
@@ -19,5 +21,5 @@ Loading.args = {
 
 export const ButtonText = Template.bind({});
 ButtonText.args = {
-  btnText: "Button",
+  btnText: 'Button',
 };

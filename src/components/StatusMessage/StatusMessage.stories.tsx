@@ -1,9 +1,9 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import { ServerResponse } from '../../typings';
 import { StatusMessage } from './StatusMessage';
 
 export default {
-  title: "Components/StatusMessage",
+  title: 'Components/StatusMessage',
   component: StatusMessage,
 } as Meta;
 

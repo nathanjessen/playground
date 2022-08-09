@@ -1,2 +1,2 @@
-import { SocialSignIn } from "./SocialSignIn";
+import { SocialSignIn } from './SocialSignIn';
 export default SocialSignIn;

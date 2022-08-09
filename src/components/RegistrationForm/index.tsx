@@ -1,8 +1,8 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { RegistrationForm } from "./RegistrationForm";
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { RegistrationForm } from './RegistrationForm';
 
-export type FormErrors = { [key: string]: string; };
-export type ValidFields = { [key: string]: boolean; };
+export type FormErrors = { [key: string]: string };
+export type ValidFields = { [key: string]: boolean };
 
 export type RegistrationParams = {
   username: string;
@@ -21,7 +21,7 @@ const initialUser: User = {
   username: '',
   email: '',
   password: '',
-  pwconfirm: ''
+  pwconfirm: '',
 };
 
 const RegistrationContainer = () => {
@@ -33,7 +33,7 @@ const RegistrationContainer = () => {
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
     // setErrors({
     //   ...errors,
@@ -44,7 +44,7 @@ const RegistrationContainer = () => {
   const onPwChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
     // setErrors({
     //   ...errors,

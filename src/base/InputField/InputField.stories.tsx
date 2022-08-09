@@ -1,16 +1,16 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import { InputField, InputFieldProps } from './InputField';
 
 export default {
-  title: "Base/InputField",
+  title: 'Base/InputField',
   component: InputField,
   args: {
     name: 'fieldname',
-  }
+  },
 } as Meta;
 
-const Template: Story<InputFieldProps> = args => <InputField {...args} />;
+const Template: Story<InputFieldProps> = (args) => <InputField {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

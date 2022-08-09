@@ -1,9 +1,9 @@
-import { ServerResponse } from "../../typings";
+import { ServerResponse } from '../../typings';
 
 export const StatusMessage = ({ status, message }: ServerResponse) => {
-  const colors: { [key: string]: string; } = {
-    'success': 'text-green-600',
-    'error': 'text-red-600',
+  const colors: { [key: string]: string } = {
+    success: 'text-green-600',
+    error: 'text-red-600',
   };
 
   return (

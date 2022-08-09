@@ -8,6 +8,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Additional tools:
 
-* [Storybook](https://storybook.js.org/docs/react/get-started/introduction)
-* [TailwindCSS](https://tailwindcss.com/)
-* [daisyUI](https://daisyui.com/)
+- [Storybook](https://storybook.js.org/docs/react/get-started/introduction)
+- [TailwindCSS](https://tailwindcss.com/)
+- [daisyUI](https://daisyui.com/)

@@ -1,5 +1,5 @@
-import { SelectHTMLAttributes } from "react";
 import clsx from 'clsx';
+import { SelectHTMLAttributes } from 'react';
 
 export interface DropListProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
@@ -16,17 +16,13 @@ export const DropList = ({
   ...rest
 }: DropListProps) => {
   return (
-    <div className="form-control w-full">
+    <div className='form-control w-full'>
       {label && (
-        <label htmlFor={name} className="label cursor-pointer">
-          <span className="label-text uppercase">
-            {label}
-          </span>
+        <label htmlFor={name} className='label cursor-pointer'>
+          <span className='label-text uppercase'>{label}</span>
 
           {!rest?.required && (
-            <span className="label-text-alt text-xs">
-              (Optional)
-            </span>
+            <span className='label-text-alt text-xs'>(Optional)</span>
           )}
         </label>
       )}
@@ -36,7 +32,9 @@ export const DropList = ({
         name={name}
         className={clsx(
           'select select-bordered border-2 w-full transition',
-          error ? 'select-error bg-red-200 text-error-content' : 'select-primary',
+          error
+            ? 'select-error bg-red-200 text-error-content'
+            : 'select-primary'
         )}
         {...rest}>
         <option value=''> -- select an option -- </option>
@@ -45,9 +43,7 @@ export const DropList = ({
         ))}
       </select>
 
-      {error && (
-        <p className="text-red-600 px-2 text-sm">{error}</p>
-      )}
+      {error && <p className='text-red-600 px-2 text-sm'>{error}</p>}
     </div>
   );
 };

@@ -1,12 +1,12 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import { Checkbox, CheckboxProps } from './Checkbox';
 
 export default {
-  title: "Base/Checkbox",
+  title: 'Base/Checkbox',
   component: Checkbox,
   args: {
-    name: "checkboxField",
+    name: 'checkboxField',
     checked: true,
   },
 } as Meta;

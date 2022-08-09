@@ -1,9 +1,9 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import { EmailSignup } from './EmailSignup';
 
 export default {
-  title: "Pages/EmailSignup",
+  title: 'Pages/EmailSignup',
   component: EmailSignup,
   parameters: {
     layout: 'fullscreen',

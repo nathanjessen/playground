@@ -12,5 +12,5 @@ export type EmailSignupFormData = {
 export type EmailSignupFormValidatorResponse = {
   success: boolean;
   message: string;
-  errors: { [key: string]: string; };
+  errors: { [key: string]: string };
 };

@@ -1,4 +1,4 @@
-export type FormErrors = { [key: string]: string; };
+export type FormErrors = { [key: string]: string };
 
 export type ServerResponse = {
   status: 'error' | 'success';

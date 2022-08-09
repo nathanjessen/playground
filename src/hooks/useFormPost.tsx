@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import API from "../lib/API";
+import API from '../lib/API';
 
 const api = new API();
 
@@ -12,19 +12,20 @@ function useFormPost<Payload>(url: string): {
   const [done, setDone] = useState<boolean>(false);
 
   const postFormData = async (body: FormData) => {
-    await api.post(url, {
-      body,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-    })
-      .then(res => {
+    await api
+      .post(url, {
+        body,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .then((res) => {
         if (!res.ok) {
           throw new Error(res.statusText);
         }
         return res.json();
       })
-      .then(res => {
+      .then((res) => {
         setDone(true);
         setData(res);
       });

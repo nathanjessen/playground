@@ -1,12 +1,14 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import { EmailSignupForm, EmailSignupFormProps } from './EmailSignupForm';
 
 export default {
-  title: "Components/EmailSignupForm",
+  title: 'Components/EmailSignupForm',
   component: EmailSignupForm,
 } as Meta;
 
-const Template: Story<EmailSignupFormProps> = (args) => <EmailSignupForm {...args} />;
+const Template: Story<EmailSignupFormProps> = (args) => (
+  <EmailSignupForm {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {};
@@ -19,13 +21,13 @@ Loading.args = {
 export const Errors = Template.bind({});
 Errors.args = {
   errors: {
-    form: "Form contains errors.",
-    firstName: "First name cannot be empty.",
-    lastName: "Last name cannot be empty.",
-    email: "Email cannot be empty.",
+    form: 'Form contains errors.',
+    firstName: 'First name cannot be empty.',
+    lastName: 'Last name cannot be empty.',
+    email: 'Email cannot be empty.',
     orgname: 'Organization cannot be empty.',
-    available: "Available cannot be empty.",
-    other: "At least one of the checkbox options is required.",
+    available: 'Available cannot be empty.',
+    other: 'At least one of the checkbox options is required.',
   },
 };
 
@@ -35,9 +37,9 @@ EmailValidation.args = {
     firstName: '',
     lastName: '',
     email: 'test',
-    available: ''
+    available: '',
   },
   errors: {
-    email: "Looks like this is not an email.",
-  }
+    email: 'Looks like this is not an email.',
+  },
 };

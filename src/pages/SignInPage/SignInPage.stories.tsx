@@ -1,12 +1,12 @@
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import { SignInPage, SignInPageProps } from './SignInPage';
 
 export default {
-  title: "Pages/SignInPage",
+  title: 'Pages/SignInPage',
   component: SignInPage,
   parameters: {
-    layout: "fullscreen"
+    layout: 'fullscreen',
   },
 } as Meta;
 
@@ -17,5 +17,5 @@ Default.args = {};
 
 export const Title = Template.bind({});
 Title.args = {
-  title: "Sign In"
+  title: 'Sign In',
 };
