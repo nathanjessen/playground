@@ -1,6 +1,5 @@
-import { Meta, Story } from '@storybook/react';
-
-import { InputField, InputFieldProps } from './InputField';
+import { Meta } from '@storybook/react';
+import { InputField } from './InputField';
 
 export default {
   title: 'Base/InputField',
@@ -10,62 +9,71 @@ export default {
   },
 } as Meta;
 
-const Template: Story<InputFieldProps> = (args) => <InputField {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Active = Template.bind({});
-Active.args = {
-  autoFocus: true,
+export const Default = {
+  args: {},
 };
 
-export const Label = Template.bind({});
-Label.args = {
-  label: 'Username',
+export const Active = {
+  args: {
+    autoFocus: true,
+  },
 };
 
-export const Required = Template.bind({});
-Required.args = {
-  label: 'Username',
-  required: true,
+export const Label = {
+  args: {
+    label: 'Username',
+  },
 };
 
-export const Optional = Template.bind({});
-Optional.args = {
-  label: 'Username',
-  required: false,
+export const Required = {
+  args: {
+    label: 'Username',
+    required: true,
+  },
 };
 
-export const TypeEmail = Template.bind({});
-TypeEmail.args = {
-  type: 'email',
+export const Optional = {
+  args: {
+    label: 'Username',
+    required: false,
+  },
 };
 
-export const TypePassword = Template.bind({});
-TypePassword.args = {
-  type: 'password',
+export const TypeEmail = {
+  args: {
+    type: 'email',
+  },
 };
 
-export const TypeNumber = Template.bind({});
-TypeNumber.args = {
-  type: 'number',
+export const TypePassword = {
+  args: {
+    type: 'password',
+  },
 };
 
-export const Value = Template.bind({});
-Value.args = {
-  label: 'Name',
-  value: 'John Doe',
+export const TypeNumber = {
+  args: {
+    type: 'number',
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  label: 'Disabled',
-  disabled: true,
+export const Value = {
+  args: {
+    label: 'Name',
+    value: 'John Doe',
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  label: 'Validation',
-  error: 'Field name cannot be empty.',
+export const Disabled = {
+  args: {
+    label: 'Disabled',
+    disabled: true,
+  },
+};
+
+export const Error = {
+  args: {
+    label: 'Validation',
+    error: 'Field name cannot be empty.',
+  },
 };

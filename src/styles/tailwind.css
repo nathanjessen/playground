@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .my-btn {
+    text-transform: inherit;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+    flex: 0 0 auto;
+    color: #fff;
+    overflow: visible;
+    text-align: center;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .my-btn-primary {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    margin-bottom: 8px;
+    justify-content: center;
+    background-color: #6024a2;
+  }
+}

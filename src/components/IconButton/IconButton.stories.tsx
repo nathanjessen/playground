@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react';
-import { SignInForm } from './SignInForm';
+import { IconButton } from './IconButton';
 
 export default {
-  title: 'Components/SignInForm',
-  component: SignInForm,
+  title: 'Components/IconButton',
+  component: IconButton,
 } as Meta;
 
 export const Default = {

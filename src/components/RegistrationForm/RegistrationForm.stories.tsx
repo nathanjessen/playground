@@ -1,25 +1,23 @@
-import { Meta, Story } from '@storybook/react';
-
-import { IRegistrationFormProps, RegistrationForm } from './RegistrationForm';
+import { Meta } from '@storybook/react';
+import { RegistrationForm } from './RegistrationForm';
 
 export default {
   title: 'Components/RegistrationForm',
   component: RegistrationForm,
 } as Meta;
 
-const Template: Story<IRegistrationFormProps> = (args) => (
-  <RegistrationForm {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Loading = Template.bind({});
-Loading.args = {
-  loading: true,
+export const Default = {
+  args: {},
 };
 
-export const ButtonText = Template.bind({});
-ButtonText.args = {
-  btnText: 'Button',
+export const Loading = {
+  args: {
+    loading: true,
+  },
+};
+
+export const ButtonText = {
+  args: {
+    btnText: 'Button',
+  },
 };

@@ -1,6 +1,5 @@
-import { Meta, Story } from '@storybook/react';
-
-import { RegistrationPage, RegistrationPageProps } from './RegistrationPage';
+import { Meta } from '@storybook/react';
+import { RegistrationPage } from './RegistrationPage';
 
 export default {
   title: 'Pages/RegistrationPage',
@@ -10,14 +9,12 @@ export default {
   },
 } as Meta;
 
-const Template: Story<RegistrationPageProps> = (args) => (
-  <RegistrationPage {...args} />
-);
+export const Default = {
+  args: {},
+};
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Title = Template.bind({});
-Title.args = {
-  title: 'Register for an Account',
+export const Title = {
+  args: {
+    title: 'Register for an Account',
+  },
 };

@@ -4,7 +4,7 @@ Collection of components built with React, TypeScript, Storybook, and Tailwind.
 
 ## Tools
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project uses [Vite](https://vitejs.dev/).
 
 Additional tools:
 

@@ -1,6 +1,5 @@
-import { Meta, Story } from '@storybook/react';
-
-import { SignInPage, SignInPageProps } from './SignInPage';
+import { Meta } from '@storybook/react';
+import { SignInPage } from './SignInPage';
 
 export default {
   title: 'Pages/SignInPage',
@@ -10,12 +9,12 @@ export default {
   },
 } as Meta;
 
-const Template: Story<SignInPageProps> = (args) => <SignInPage {...args} />;
+export const Default = {
+  args: {},
+};
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Title = Template.bind({});
-Title.args = {
-  title: 'Sign In',
+export const Title = {
+  args: {
+    title: 'Sign In',
+  },
 };

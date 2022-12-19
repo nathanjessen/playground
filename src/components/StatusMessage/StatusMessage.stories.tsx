@@ -1,5 +1,4 @@
-import { Meta, Story } from '@storybook/react';
-import { ServerResponse } from '../../typings';
+import { Meta } from '@storybook/react';
 import { StatusMessage } from './StatusMessage';
 
 export default {
@@ -7,19 +6,20 @@ export default {
   component: StatusMessage,
 } as Meta;
 
-const Template: Story<ServerResponse> = (args) => <StatusMessage {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Success = Template.bind({});
-Success.args = {
-  status: 'success',
-  message: 'Thank you. You are now subscribed.',
+export const Default = {
+  args: {},
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  status: 'error',
-  message: 'Invalid Subscription request.',
+export const Success = {
+  args: {
+    status: 'success',
+    message: 'Thank you. You are now subscribed.',
+  },
+};
+
+export const Error = {
+  args: {
+    status: 'error',
+    message: 'Invalid Subscription request.',
+  },
 };
