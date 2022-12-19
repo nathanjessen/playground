@@ -5,9 +5,9 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     // '@storybook/addon-a11y',
-    'storybook-addon-theme-changer',
-    'storybook-addon-designs',
-    'addon-screen-reader',
+    // 'storybook-addon-theme-changer',
+    // 'storybook-addon-designs',
+    // 'addon-screen-reader',
   ],
   framework: {
     name: '@storybook/react-vite',
