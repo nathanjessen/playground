@@ -81,7 +81,9 @@ src/
 - `build` - Build for production
 - `preview` - Preview production build
 - `storybook` - Start Storybook development server
-- `build-storybook` - Build Storybook for production
+- `build:storybook` - Build Storybook for production
+- `format:check` - Check code formatting
+- `lint` - Run ESLint
 
 ## Contributing
 
@@ -90,7 +92,3 @@ src/
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
