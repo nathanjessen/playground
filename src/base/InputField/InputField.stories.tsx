@@ -113,18 +113,26 @@ export const Password: Story = {
   },
 };
 
+const AllStatesTemplate = (args: Story['args']) => (
+  <div className="flex flex-col gap-4">
+    <InputField {...args} name="default" label="Default" placeholder="Default input" />
+    <InputField {...args} name="required" label="Required" required placeholder="Required input" />
+    <InputField
+      {...args}
+      name="error"
+      label="With Error"
+      error="This field has an error"
+      placeholder="Error state"
+    />
+    <InputField {...args} name="disabled" label="Disabled" disabled value="Disabled input" />
+  </div>
+);
+
 export const AllStates: Story = {
-  render: () => (
-    <div className="flex flex-col gap-4">
-      <InputField name="default" label="Default" placeholder="Default input" />
-      <InputField name="required" label="Required" required placeholder="Required input" />
-      <InputField
-        name="error"
-        label="With Error"
-        error="This field has an error"
-        placeholder="Error state"
-      />
-      <InputField name="disabled" label="Disabled" disabled value="Disabled input" />
-    </div>
-  ),
+  render: AllStatesTemplate,
+  args: {
+    name: 'allStates',
+    placeholder: 'All states input',
+    label: 'All States',
+  },
 };

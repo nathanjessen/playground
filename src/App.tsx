@@ -1,9 +1,9 @@
+import ThemeDropdown from './components/ThemeDropdown';
 import EmailSignup from './pages/EmailSignup';
 import { ThemeProvider } from './state/ThemeContext';
 import './styles/tailwind.css';
 // import RegistrationPage from './pages/RegistrationPage';
 // import SignInPage from './pages/SignInPage';
-import ThemeDropdown from './components/ThemeDropdown';
 
 function App() {
   return (

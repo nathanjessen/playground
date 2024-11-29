@@ -11,6 +11,7 @@ coverage
 # Generated files
 *.generated.*
 *.min.*
+src/styles/tailwind.output.css
 
 # Config files
 *.config.js
