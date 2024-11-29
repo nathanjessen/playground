@@ -1,29 +1,31 @@
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw';
 import { SIGNUP_API } from '../constants';
 import { ServerResponse } from '../typings';
 
-const signupHandler = rest.post<FormData, ServerResponse>(
+const signupHandler = http.post(
   SIGNUP_API,
-  (req, res, ctx) => {
+  async ({ request }) => {
     let success = true;
 
     if (success) {
-      return res(
-        ctx.delay(3000),
-        ctx.status(200),
-        ctx.json({
+      return HttpResponse.json<ServerResponse>(
+        {
           status: 'success',
           message: 'Thank you. You are now subscribed.',
-        })
+        },
+        {
+          status: 200,
+        }
       );
     } else {
-      return res(
-        ctx.delay(3000),
-        ctx.status(200),
-        ctx.json({
+      return HttpResponse.json<ServerResponse>(
+        {
           status: 'error',
           message: 'Invalid Subscription request.',
-        })
+        },
+        {
+          status: 200,
+        }
       );
     }
   }

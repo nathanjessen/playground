@@ -1,6 +1,6 @@
-export const defaultTheme: string = 'corporate';
+export const defaultTheme = 'corporate';
 
-export const daisyThemes: Array<string> = [
+export const daisyThemes = [
   'light',
   'garden',
   'dark',
@@ -32,4 +32,4 @@ export const daisyThemes: Array<string> = [
   'winter',
 ];
 
-export const themes: Array<string> = [...daisyThemes].sort();
+export const themes = [...daisyThemes].sort();
