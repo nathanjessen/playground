@@ -1,0 +1,1 @@
+const e=["light","garden","dark","cupcake","bumblebee","emerald","corporate"],o=[...e].sort(),a={actions:{argTypesRegex:"^on[A-Z].*"},controls:{matchers:{color:/(background|color)$/i,date:/Date$/}}},t={themes:{defaultValue:o}};export{t as globalTypes,a as parameters};
