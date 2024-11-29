@@ -1,27 +1,23 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-export interface ListProps<ListItem> {
-  items: ListItem[];
-  render: (item: ListItem) => ReactNode;
+export interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => ReactNode;
 }
 
-export const List = <ListItem extends unknown>({
-  items,
-  render,
-}: ListProps<ListItem>) => {
+export function List<T>({ items, renderItem }: ListProps<T>) {
   return (
     <ul>
-      {items.map(render)}
-      {/* {items.map((item, index) => (
-        <li key={index}>{render(item)}</li>
-      ))} */}
+      {items.map((item, index) => (
+        <li key={index}>{renderItem(item)}</li>
+      ))}
     </ul>
   );
-};
+}
 
 // Usecase
 /*
 {
-  <List items={['a', 'b']} render={(item) => <li key={item}>{item}</li>} />
+  <List items={['a', 'b']} renderItem={(item) => <li key={item}>{item}</li>} />
 }
 */

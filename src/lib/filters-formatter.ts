@@ -1,12 +1,12 @@
-import { kebabCase } from 'lodash';
+import kebabCase from 'lodash/kebabCase';
 
 export interface FilterField {
   name: string;
-  value: string | any[] | boolean | undefined;
+  value: string | number | boolean | Array<string | number> | undefined;
   type?: string;
 }
 
-export const hyphenateArray = (arr: any[]): string => {
+export const hyphenateArray = (arr: Array<string | number>): string => {
   const str = arr.join(' ');
   return kebabCase(str);
 };
@@ -17,16 +17,21 @@ export const hyphenateArray = (arr: any[]): string => {
  * @returns string
  */
 export const formatUrl = ({ name, value, type }: FilterField): string => {
-  if (type === 'range' && Array.isArray(value)) {
-    return hyphenateArray([name, [value[0], 'to', value[1]]]);
+  if (!value || (Array.isArray(value) && value.length === 0)) {
+    return '';
   }
-  if (typeof value === 'boolean' || typeof value === 'undefined') {
-    if (value) return kebabCase(name);
-    else return '';
-  }
-  if (!value || value.length === 0) return '';
 
-  const filters: string =
-    typeof value === 'object' ? hyphenateArray(value) : value;
-  return hyphenateArray([name, filters]);
+  if (type === 'range' && Array.isArray(value)) {
+    return hyphenateArray([name, value[0], 'to', value[1]]);
+  }
+
+  if (Array.isArray(value)) {
+    return hyphenateArray([name, ...value]);
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? kebabCase(name) : '';
+  }
+
+  return hyphenateArray([name, value.toString()]);
 };

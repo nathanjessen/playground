@@ -5,7 +5,7 @@ import App from './App';
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
 
-if (process.env.NODE_ENV === 'development') {
+if (import.meta.env.DEV) {
   import('./mocks/browser')
     .then(({ worker }) => {
       worker.start();

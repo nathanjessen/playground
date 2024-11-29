@@ -1,32 +1,27 @@
-import { rest } from 'msw';
+import { http } from 'msw';
 import { SIGNUP_API } from '../constants';
 import { ServerResponse } from '../typings';
 
-const signupHandler = rest.post<FormData, ServerResponse>(
-  SIGNUP_API,
-  (req, res, ctx) => {
-    let success = true;
+const signupHandler = http.post(SIGNUP_API, async (_request) => {
+  const success = true;
 
-    if (success) {
-      return res(
-        ctx.delay(3000),
-        ctx.status(200),
-        ctx.json({
-          status: 'success',
-          message: 'Thank you. You are now subscribed.',
-        })
-      );
-    } else {
-      return res(
-        ctx.delay(3000),
-        ctx.status(200),
-        ctx.json({
-          status: 'error',
-          message: 'Invalid Subscription request.',
-        })
-      );
-    }
+  if (success) {
+    return new Response(
+      JSON.stringify({
+        status: 'success',
+        message: 'Registration successful',
+      } satisfies ServerResponse),
+      { status: 200 }
+    );
   }
-);
+
+  return new Response(
+    JSON.stringify({
+      status: 'error',
+      message: 'Registration failed',
+    } satisfies ServerResponse),
+    { status: 400 }
+  );
+});
 
 export const handlers = [signupHandler];

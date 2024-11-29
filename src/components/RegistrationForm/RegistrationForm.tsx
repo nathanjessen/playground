@@ -1,14 +1,28 @@
-import { ChangeEvent, FormEvent } from 'react';
-import { User } from './index';
+import type { ChangeEvent, FormEvent } from 'react';
+
+export interface FormErrors {
+  username?: string;
+  email?: string;
+  password?: string;
+  pwconfirm?: string;
+  form?: string;
+}
+
+export interface User {
+  username: string;
+  email: string;
+  password: string;
+  pwconfirm: string;
+}
 
 export interface IRegistrationFormProps {
-  onInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onPwChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onFormSubmit?: (e: FormEvent<HTMLFormElement>) => void;
-  errors?: any;
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onPwChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onFormSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  errors?: FormErrors;
   loading?: boolean;
   btnText?: string;
-  user?: User;
+  user: User;
 }
 
 export const RegistrationForm = ({
@@ -16,110 +30,123 @@ export const RegistrationForm = ({
   onPwChange,
   onFormSubmit,
   errors,
-  loading,
+  loading = false,
   btnText = 'Sign Up',
   user,
-}: IRegistrationFormProps) => {
-  const disabled = loading || errors;
+}: IRegistrationFormProps): JSX.Element => {
+  const hasErrors = errors && Object.keys(errors).length > 0;
+  const disabled = loading || hasErrors;
 
   return (
-    <form onSubmit={(e) => onFormSubmit?.(e)} className='space-y-2'>
-      <div className='form-control'>
-        <label htmlFor='username' className='label'>
-          <span className='label-text'>Username</span>
+    <form onSubmit={onFormSubmit} className="space-y-2">
+      {errors?.form && (
+        <div className="alert alert-error">
+          <span>{errors.form}</span>
+        </div>
+      )}
+      <div className="form-control">
+        <label htmlFor="username" className="label">
+          <span className="label-text">Username</span>
         </label>
-        <div className='flex items-center gap-4'>
+        <div className="flex items-center gap-4">
           <input
-            id='username'
-            name='username'
-            type='text'
+            id="username"
+            name="username"
+            type="text"
             required
             className={`input input-bordered w-full bg-base-300 ${
               errors?.username ? 'input-error' : ''
             }`}
-            onChange={(e) => onInputChange?.(e)}
-            value={user?.username}
+            value={user.username}
+            onChange={onInputChange}
+            disabled={loading}
           />
         </div>
         {errors?.username && (
-          <p className='text-error p-2 text-sm'>{errors.username}</p>
+          <label className="label">
+            <span className="label-text-alt text-error">{errors.username}</span>
+          </label>
         )}
       </div>
 
-      <div className='form-control'>
-        <label htmlFor='email' className='label'>
-          <span className='label-text'>Email address</span>
+      <div className="form-control">
+        <label htmlFor="email" className="label">
+          <span className="label-text">Email</span>
         </label>
-        <input
-          id='email'
-          name='email'
-          type='email'
-          autoComplete='email'
-          required
-          className={`input input-bordered w-full bg-base-300 ${
-            errors?.email ? 'input-error' : ''
-          }`}
-          onChange={(e) => onInputChange?.(e)}
-          value={user?.email}
-        />
+        <div className="flex items-center gap-4">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className={`input input-bordered w-full bg-base-300 ${
+              errors?.email ? 'input-error' : ''
+            }`}
+            value={user.email}
+            onChange={onInputChange}
+            disabled={loading}
+          />
+        </div>
         {errors?.email && (
-          <p className='text-error p-2 text-sm'>{errors.email}</p>
+          <label className="label">
+            <span className="label-text-alt text-error">{errors.email}</span>
+          </label>
         )}
       </div>
 
-      <div className='form-control'>
-        <label htmlFor='password' className='label'>
-          <span className='label-text'>Password</span>
+      <div className="form-control">
+        <label htmlFor="password" className="label">
+          <span className="label-text">Password</span>
         </label>
-        <input
-          id='password'
-          name='password'
-          type='password'
-          required
-          className={`input input-bordered w-full bg-base-300 ${
-            errors?.password ? 'input-error' : ''
-          }`}
-          onChange={(e) => onPwChange?.(e)}
-          value={user?.password}
-        />
+        <div className="flex items-center gap-4">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            className={`input input-bordered w-full bg-base-300 ${
+              errors?.password ? 'input-error' : ''
+            }`}
+            value={user.password}
+            onChange={onPwChange}
+            disabled={loading}
+          />
+        </div>
         {errors?.password && (
-          <p className='text-error p-2 text-sm'>{errors.password}</p>
+          <label className="label">
+            <span className="label-text-alt text-error">{errors.password}</span>
+          </label>
         )}
       </div>
 
-      <div className='form-control'>
-        <label htmlFor='pwconfirm' className='label'>
-          <span className='label-text'>Confirm password</span>
+      <div className="form-control">
+        <label htmlFor="pwconfirm" className="label">
+          <span className="label-text">Confirm Password</span>
         </label>
-        <input
-          id='pwconfirm'
-          name='pwconfirm'
-          type='password'
-          required
-          className={`input input-bordered w-full bg-base-300 ${
-            errors?.pwconfirm ? 'input-error' : ''
-          }`}
-          onChange={(e) => onInputChange?.(e)}
-          value={user?.pwconfirm}
-        />
+        <div className="flex items-center gap-4">
+          <input
+            id="pwconfirm"
+            name="pwconfirm"
+            type="password"
+            required
+            className={`input input-bordered w-full bg-base-300 ${
+              errors?.pwconfirm ? 'input-error' : ''
+            }`}
+            value={user.pwconfirm}
+            onChange={onPwChange}
+            disabled={loading}
+          />
+        </div>
         {errors?.pwconfirm && (
-          <p className='text-error p-2 text-sm'>{errors.pwconfirm}</p>
+          <label className="label">
+            <span className="label-text-alt text-error">{errors.pwconfirm}</span>
+          </label>
         )}
       </div>
 
-      <div className='pt-4'>
-        <button
-          type='submit'
-          className={`btn btn-primary btn-block ${
-            errors ? 'btn-disabled' : ''
-          } ${loading ? 'loading' : ''}`}
-          disabled={disabled}>
-          {btnText}
-        </button>
-        {errors?.form && (
-          <p className='text-error p-2 text-sm'>{errors.form}</p>
-        )}
-      </div>
+      <button type="submit" className="btn btn-primary w-full" disabled={disabled}>
+        {loading ? <span className="loading loading-spinner loading-sm"></span> : btnText}
+      </button>
     </form>
   );
 };

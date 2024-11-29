@@ -1,4 +1,5 @@
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
+import { useCallback, useState } from 'react';
 import { SIGNUP_API } from '../../constants';
 import useFormPost from '../../hooks/useFormPost';
 import { FormErrors, ServerResponse } from '../../typings';
@@ -19,7 +20,7 @@ const initialState: EmailSignupFormData = {
 };
 
 const EmailSignupFormContainer = () => {
-  const { done, data, postFormData } = useFormPost<ServerResponse>(SIGNUP_API);
+  const { done, data, error, postFormData } = useFormPost<ServerResponse>();
   const [fields, setFields] = useState<EmailSignupFormData>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState<boolean>(false);
@@ -30,15 +31,12 @@ const EmailSignupFormContainer = () => {
     setLoading(false);
   };
 
-  const onInputChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setFields((currentFields) => ({
-        ...currentFields,
-        [e.target.name]: e.target.value,
-      }));
-    },
-    []
-  );
+  const onInputChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFields((currentFields) => ({
+      ...currentFields,
+      [e.target.name]: e.target.value,
+    }));
+  }, []);
 
   const onCheckboxChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setFields((currentFields) => ({
@@ -49,8 +47,7 @@ const EmailSignupFormContainer = () => {
 
   const onFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const validation: EmailSignupFormValidatorResponse =
-      validateEmailSignupForm(fields);
+    const validation: EmailSignupFormValidatorResponse = validateEmailSignupForm(fields);
 
     if (validation.success) {
       setLoading(true);
@@ -60,7 +57,7 @@ const EmailSignupFormContainer = () => {
         const [key, val] = field;
         formBody.set(key, val);
       });
-      await postFormData(formBody);
+      await postFormData(SIGNUP_API, formBody);
       onFormReset();
     } else {
       setErrors({
@@ -72,19 +69,22 @@ const EmailSignupFormContainer = () => {
   };
 
   return (
-    <div className='max-w-lg mx-auto'>
-      {done && data ? (
-        <StatusMessage status={data.status} message={data.message} />
-      ) : (
-        <EmailSignupForm
-          onFormSubmit={onFormSubmit}
-          onInputChange={onInputChange}
-          onCheckboxChange={onCheckboxChange}
-          fields={fields}
-          errors={errors}
-          loading={loading}
+    <div className="mx-auto max-w-lg">
+      {done && data && (
+        <StatusMessage
+          type={data.status === 'success' ? 'success' : 'error'}
+          message={data.message}
         />
       )}
+      {error && <StatusMessage type="error" message={error} />}
+      <EmailSignupForm
+        onFormSubmit={onFormSubmit}
+        onInputChange={onInputChange}
+        onCheckboxChange={onCheckboxChange}
+        fields={fields}
+        errors={errors}
+        loading={loading}
+      />
     </div>
   );
 };

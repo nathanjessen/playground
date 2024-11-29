@@ -1,43 +1,57 @@
-import {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
-import { defaultTheme, themes } from '../constants/themes';
+import type { ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
-export type ThemeContextType = {
-  theme: string;
-  themes: Array<string>;
-  setTheme: (Theme: string) => void;
-};
+export type Theme = 'light' | 'dark';
+
+interface ThemeContextType {
+  theme: Theme;
+  themes: Theme[];
+  setTheme: (theme: Theme) => void;
+  toggleTheme: () => void;
+}
+
+interface ThemeProviderProps {
+  children: ReactNode;
+}
+
+const defaultTheme: Theme = 'light';
+const themes: Theme[] = ['light', 'dark'];
 
 const initialState: ThemeContextType = {
   theme: defaultTheme,
-  themes: themes,
-  setTheme: (newTheme) => {
-    console.log(newTheme);
-  },
+  themes,
+  setTheme: (_theme: Theme) => {},
+  toggleTheme: () => {},
 };
 
-export const ThemeContext = createContext<ThemeContextType>(initialState);
+const ThemeContext = createContext<ThemeContextType>(initialState);
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = (): ThemeContextType => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
+};
 
-export const ThemeProvider = (props: PropsWithChildren) => {
-  const [theme, setTheme] = useState<string>(
-    localStorage.theme || defaultTheme
-  );
+export const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => {
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : defaultTheme;
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, themes, setTheme }}>
-      {props.children}
+    <ThemeContext.Provider value={{ theme, themes, setTheme, toggleTheme }}>
+      {children}
     </ThemeContext.Provider>
   );
 };

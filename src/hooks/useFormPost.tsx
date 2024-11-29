@@ -1,39 +1,40 @@
 import { useState } from 'react';
-import API from '../lib/API';
+import API, { APIResponse } from '../lib/API';
 
 const api = new API();
 
-function useFormPost<Payload>(url: string): {
-  data: Payload | null;
+function useFormPost<T>(): {
+  data: APIResponse<T> | null;
   done: boolean;
-  postFormData: (T: FormData) => void;
+  error: string | null;
+  postFormData: (url: string, formData: FormData) => Promise<void>;
 } {
-  const [data, setData] = useState<Payload | null>(null);
+  const [data, setData] = useState<APIResponse<T> | null>(null);
   const [done, setDone] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const postFormData = async (body: FormData) => {
-    await api
-      .post(url, {
-        body,
+  const postFormData = async (url: string, formData: FormData) => {
+    try {
+      const response = await api.post<T>(url, {
+        body: formData,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-      })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-        return res.json();
-      })
-      .then((res) => {
-        setDone(true);
-        setData(res);
       });
+
+      setData(response);
+      setDone(true);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      setDone(true);
+    }
   };
 
   return {
     data,
     done,
+    error,
     postFormData,
   };
 }
