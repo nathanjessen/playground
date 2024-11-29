@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { SelectHTMLAttributes } from 'react';
+import { SelectHTMLAttributes } from 'react';
 
 export interface DropListItem {
   id: string | number;
@@ -14,13 +14,7 @@ export interface DropListProps extends SelectHTMLAttributes<HTMLSelectElement> {
   error?: string;
 }
 
-export const DropList: React.FC<DropListProps> = ({
-  name,
-  label,
-  items,
-  error,
-  ...rest
-}: DropListProps) => {
+export const DropList = ({ name, label, items, error, ...rest }: DropListProps): JSX.Element => {
   return (
     <div className="form-control w-full">
       {label && (

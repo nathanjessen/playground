@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 import Button from '../../base/Button';
 import { Checkbox } from '../../base/Checkbox/Checkbox';
 import DropList from '../../base/DropList';

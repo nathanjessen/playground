@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 
 export type User = {
   username: string;

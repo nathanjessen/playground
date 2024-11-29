@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 
 export interface FormErrors {
   username?: string;
@@ -16,16 +16,16 @@ export interface User {
 }
 
 export interface IRegistrationFormProps {
-  onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onPwChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onPwChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onFormSubmit: (e: FormEvent<HTMLFormElement>) => void;
   errors?: FormErrors;
   loading?: boolean;
   btnText?: string;
   user: User;
 }
 
-export const RegistrationForm: React.FC<IRegistrationFormProps> = ({
+export const RegistrationForm = ({
   onInputChange,
   onPwChange,
   onFormSubmit,
@@ -33,7 +33,7 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = ({
   loading = false,
   btnText = 'Sign Up',
   user,
-}) => {
+}: IRegistrationFormProps): JSX.Element => {
   const hasErrors = errors && Object.keys(errors).length > 0;
   const disabled = loading || hasErrors;
 

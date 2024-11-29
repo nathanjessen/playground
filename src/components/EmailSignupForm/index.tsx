@@ -1,4 +1,5 @@
-import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
+import { useCallback, useState } from 'react';
 import { SIGNUP_API } from '../../constants';
 import useFormPost from '../../hooks/useFormPost';
 import { FormErrors, ServerResponse } from '../../typings';
