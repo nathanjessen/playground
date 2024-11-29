@@ -8,14 +8,7 @@ export type ButtonProps = {
   loading?: boolean;
   animation?: 'no-animation' | string;
   size?: 'xs' | 'sm' | 'md' | 'lg';
-  color?:
-    | 'primary'
-    | 'secondary'
-    | 'accent'
-    | 'info'
-    | 'success'
-    | 'warning'
-    | 'error';
+  color?: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error';
   variant?: 'ghost' | 'link' | 'outline' | 'glass';
   shape?: 'wide' | 'block' | 'circle' | 'square';
   util?: string;
@@ -88,7 +81,8 @@ export const Button = <C extends ElementType = 'button'>({
         util
       )}
       disabled={disabled}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </Component>
   );

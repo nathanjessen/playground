@@ -1,34 +1,27 @@
-import { http, HttpResponse } from 'msw';
+import { http } from 'msw';
 import { SIGNUP_API } from '../constants';
 import { ServerResponse } from '../typings';
 
-const signupHandler = http.post(
-  SIGNUP_API,
-  async ({ request }) => {
-    let success = true;
+const signupHandler = http.post(SIGNUP_API, async (_request) => {
+  const success = true;
 
-    if (success) {
-      return HttpResponse.json<ServerResponse>(
-        {
-          status: 'success',
-          message: 'Thank you. You are now subscribed.',
-        },
-        {
-          status: 200,
-        }
-      );
-    } else {
-      return HttpResponse.json<ServerResponse>(
-        {
-          status: 'error',
-          message: 'Invalid Subscription request.',
-        },
-        {
-          status: 200,
-        }
-      );
-    }
+  if (success) {
+    return new Response(
+      JSON.stringify({
+        status: 'success',
+        message: 'Registration successful',
+      } satisfies ServerResponse),
+      { status: 200 }
+    );
   }
-);
+
+  return new Response(
+    JSON.stringify({
+      status: 'error',
+      message: 'Registration failed',
+    } satisfies ServerResponse),
+    { status: 400 }
+  );
+});
 
 export const handlers = [signupHandler];

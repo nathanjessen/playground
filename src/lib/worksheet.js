@@ -33,21 +33,21 @@ const characters = [
 ];
 
 //***MAP***
-const names = characters.map((character) => character.name);
-const heights = characters.map((char) => char.height);
+const _names = characters.map((character) => character.name);
+const _heights = characters.map((char) => char.height);
 
-const nameHeights = characters.map((char) => ({
+const _nameHeights = characters.map((char) => ({
   name: char.name,
   height: char.height,
 }));
 
-const firstNames = characters.map((char) => char.name.split(' ')[0]);
+const _firstNames = characters.map((char) => char.name.split(' ')[0]);
 
 //***REDUCE***
-const totalMass = characters.reduce((acc, char) => acc + char.mass, 0);
-const totalHeight = characters.reduce((acc, char) => acc + char.height, 0);
+const _totalMass = characters.reduce((acc, char) => acc + char.mass, 0);
+const _totalHeight = characters.reduce((acc, char) => acc + char.height, 0);
 
-const eyes = characters.reduce((acc, char) => {
+const _eyes = characters.reduce((acc, char) => {
   const color = char.eye_color;
   if (acc[color]) {
     acc[color]++;
@@ -57,39 +57,36 @@ const eyes = characters.reduce((acc, char) => {
   return acc;
 }, {});
 
-const totalCharacterNameLetters = characters.reduce(
-  (acc, char) => acc + char.name.length,
-  0
-);
+const _totalCharacterNameLetters = characters.reduce((acc, char) => acc + char.name.length, 0);
 
 //***FILTER***
-const highMassCharacters = characters.filter((char) => char.mass > 100);
-const shortCharacters = characters.filter((char) => char.height < 200);
-const maleCharacters = characters.filter((char) => char.gender === 'male');
-const femaleCharacters = characters.filter((char) => char.gender === 'female');
+const _highMassCharacters = characters.filter((char) => char.mass > 100);
+const _shortCharacters = characters.filter((char) => char.height < 200);
+const _maleCharacters = characters.filter((char) => char.gender === 'male');
+const _femaleCharacters = characters.filter((char) => char.gender === 'female');
 
 //***SORT***
-const charByMass = characters.sort((a, b) => a.mass - b.mass);
-const byHeight = characters.sort((a, b) => a.height - b.height);
+const _charByMass = characters.sort((a, b) => a.mass - b.mass);
+const _byHeight = characters.sort((a, b) => a.height - b.height);
 
-const byName = characters.sort((a, b) => {
+const _byName = characters.sort((a, b) => {
   if (a.name < b.name) return -1;
   return 1;
 });
 
-const byGender = characters.sort((a, b) => {
+const _byGender = characters.sort((a, b) => {
   if (a.gender < b.gender) return -1;
   return 1;
 });
 
 //***EVERY***
-const allBlueEyes = characters.every((char) => char.eye_color === 'blue');
-const allHighMass = characters.every((char) => char.mass > 40);
-const allShort = characters.every((char) => char.height < 200);
-const allMale = characters.every((char) => char.gender === 'male');
+const _allBlueEyes = characters.every((char) => char.eye_color === 'blue');
+const _allHighMass = characters.every((char) => char.mass > 40);
+const _allShort = characters.every((char) => char.height < 200);
+const _allMale = characters.every((char) => char.gender === 'male');
 
 //***SOME***
-const someMale = characters.some((char) => char.gender === 'male');
-const someBlueEyes = characters.some((char) => char.eye_color === 'blue');
-const someTaller = characters.some((char) => char.height > 210);
-const someLowMass = characters.some((char) => char.mass < 50);
+const _someMale = characters.some((char) => char.gender === 'male');
+const _someBlueEyes = characters.some((char) => char.eye_color === 'blue');
+const _someTaller = characters.some((char) => char.height > 210);
+const _someLowMass = characters.some((char) => char.mass < 50);

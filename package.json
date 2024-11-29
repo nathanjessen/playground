@@ -11,6 +11,7 @@
     "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^7.0.1",
     "validator": "^13.12.0"
   },
   "scripts": {
@@ -24,22 +25,12 @@
     "test:coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
-    "test:storybook": "storybook test"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
+    "test:storybook": "storybook test",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "validate": "npm run format:check && npm run lint && npm run test:coverage"
   },
   "browserslist": {
     "production": [
@@ -73,16 +64,29 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/validator": "^13.12.2",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "@typescript-eslint/parser": "^8.16.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^2.1.6",
     "autoprefixer": "^10.4.20",
     "babel-plugin-named-exports-order": "^0.0.2",
     "daisyui": "^4.12.14",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
     "msw": "^2.6.6",
     "postcss": "^8.4.49",
+    "prettier": "^3.4.1",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "prop-types": "^15.8.1",
     "storybook": "^8.4.6",
     "tailwindcss": "^3.4.15",
+    "terser": "^5.36.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.1",
     "vitest": "^2.1.6"

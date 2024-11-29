@@ -1,0 +1,17 @@
+# Dependencies
+node_modules
+package-lock.json
+
+# Build output
+build
+dist
+storybook-static
+coverage
+
+# Generated files
+*.generated.*
+*.min.*
+
+# Config files
+*.config.js
+*.config.ts

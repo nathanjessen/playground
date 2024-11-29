@@ -7,12 +7,12 @@ export default {
 } as Meta;
 
 const gridDecorator = (Story: StoryFn) => (
-  <div className='flex w-full'>
-    <div className='grid h-20 flex-grow card bg-base-300 rounded-box place-items-center'>
+  <div className="flex w-full">
+    <div className="card grid h-20 flex-grow place-items-center rounded-box bg-base-300">
       content
     </div>
     <Story />
-    <div className='grid h-20 flex-grow card bg-base-300 rounded-box place-items-center'>
+    <div className="card grid h-20 flex-grow place-items-center rounded-box bg-base-300">
       content
     </div>
   </div>

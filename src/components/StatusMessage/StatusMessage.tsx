@@ -1,14 +1,17 @@
-import { ServerResponse } from '../../typings';
+interface StatusMessageProps {
+  type: 'success' | 'error';
+  message: string;
+}
 
-export const StatusMessage = ({ status, message }: ServerResponse) => {
+export const StatusMessage = ({ type, message }: StatusMessageProps) => {
   const colors: { [key: string]: string } = {
-    success: 'text-green-600',
-    error: 'text-red-600',
+    success: 'alert alert-success',
+    error: 'alert alert-error',
   };
 
   return (
-    <p className={['text-2xl font-medium', status && colors[status]].join(' ')}>
-      {message}
-    </p>
+    <div className={colors[type]}>
+      <span>{message}</span>
+    </div>
   );
 };

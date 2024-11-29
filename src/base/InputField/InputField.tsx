@@ -8,22 +8,14 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: HTMLInputTypeAttribute;
 }
 
-export const InputField = ({
-  name,
-  label,
-  error,
-  type = 'text',
-  ...rest
-}: InputFieldProps) => {
+export const InputField = ({ name, label, error, type = 'text', ...rest }: InputFieldProps) => {
   return (
-    <div className='form-control w-full'>
+    <div className="form-control w-full">
       {label && (
-        <label htmlFor={name} className='label cursor-pointer'>
-          <span className='label-text uppercase'>{label}</span>
+        <label htmlFor={name} className="label cursor-pointer">
+          <span className="label-text uppercase">{label}</span>
 
-          {!rest?.required && (
-            <span className='label-text-alt text-xs'>(Optional)</span>
-          )}
+          {!rest?.required && <span className="label-text-alt text-xs">(Optional)</span>}
         </label>
       )}
 
@@ -32,13 +24,13 @@ export const InputField = ({
         name={name}
         type={type}
         className={clsx(
-          'input input-bordered border-2 w-full',
+          'input input-bordered w-full border-2',
           error ? 'input-error bg-red-200 text-error-content' : 'input-primary'
         )}
         {...rest}
       />
 
-      {error && <p className='text-error px-2 text-sm mt-1'>{error}</p>}
+      {error && <p className="mt-1 px-2 text-sm text-error">{error}</p>}
     </div>
   );
 };
