@@ -1,79 +1,130 @@
-import { Meta } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { InputField } from './InputField';
 
-export default {
+const meta = {
   title: 'Base/InputField',
   component: InputField,
-  args: {
-    name: 'fieldname',
+  parameters: {
+    layout: 'centered',
   },
-} as Meta;
+  tags: ['autodocs'],
+  argTypes: {
+    name: {
+      control: 'text',
+      description: 'Input field name attribute',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'undefined' },
+      },
+    },
+    label: {
+      control: 'text',
+      description: 'Label text for the input field',
+    },
+    error: {
+      control: 'text',
+      description: 'Error message to display',
+    },
+    type: {
+      control: 'select',
+      options: ['text', 'email', 'password', 'number', 'tel', 'url'],
+      description: 'HTML input type',
+    },
+    required: {
+      control: 'boolean',
+      description: 'Whether the field is required',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Whether the field is disabled',
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text',
+    },
+  },
+} satisfies Meta<typeof InputField>;
 
-export const Default = {
-  args: {},
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    name: 'username',
+    placeholder: 'Enter username',
+  },
 };
 
-export const Active = {
+export const WithLabel: Story = {
   args: {
-    autoFocus: true,
-  },
-};
-
-export const Label = {
-  args: {
+    name: 'username',
     label: 'Username',
+    placeholder: 'Enter username',
   },
 };
 
-export const Required = {
+export const Required: Story = {
   args: {
-    label: 'Username',
-    required: true,
-  },
-};
-
-export const Optional = {
-  args: {
-    label: 'Username',
-    required: false,
-  },
-};
-
-export const TypeEmail = {
-  args: {
+    name: 'email',
+    label: 'Email',
     type: 'email',
+    required: true,
+    placeholder: 'Enter email',
   },
 };
 
-export const TypePassword = {
+export const Optional: Story = {
   args: {
-    type: 'password',
+    name: 'phone',
+    label: 'Phone Number',
+    type: 'tel',
+    required: false,
+    placeholder: 'Enter phone number',
   },
 };
 
-export const TypeNumber = {
+export const WithError: Story = {
   args: {
-    type: 'number',
+    name: 'email',
+    label: 'Email',
+    type: 'email',
+    required: true,
+    value: 'invalid-email',
+    error: 'Please enter a valid email address',
   },
 };
 
-export const Value = {
+export const Disabled: Story = {
   args: {
-    label: 'Name',
-    value: 'John Doe',
-  },
-};
-
-export const Disabled = {
-  args: {
-    label: 'Disabled',
+    name: 'username',
+    label: 'Username',
     disabled: true,
+    value: 'johndoe',
   },
 };
 
-export const Error = {
+export const Password: Story = {
   args: {
-    label: 'Validation',
-    error: 'Field name cannot be empty.',
+    name: 'password',
+    label: 'Password',
+    type: 'password',
+    required: true,
+    placeholder: 'Enter password',
   },
+};
+
+export const AllStates: Story = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <InputField name="default" label="Default" placeholder="Default input" />
+      <InputField name="required" label="Required" required placeholder="Required input" />
+      <InputField
+        name="error"
+        label="With Error"
+        error="This field has an error"
+        placeholder="Error state"
+      />
+      <InputField name="disabled" label="Disabled" disabled value="Disabled input" />
+    </div>
+  ),
 };
