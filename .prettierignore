@@ -12,6 +12,7 @@ coverage
 *.generated.*
 *.min.*
 src/styles/tailwind.output.css
+public/mockServiceWorker.js
 
 # Config files
 *.config.js
